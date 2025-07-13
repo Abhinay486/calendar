@@ -75,7 +75,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
       cellClasses += 'calendar-cell-regular ';
     }
 
-    let textClasses = 'text-xl font-bold ';
+    let textClasses = 'text-xl font-bold calendar-date ';
     if (!day.isCurrentMonth) {
       textClasses += 'text-gray-400';
     } else if (day.isSunday) {
