@@ -63,7 +63,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
   };
 
   const renderDay = (day: CalendarDay) => {
-    let cellClasses = 'h-24 border-r border-b border-light flex items-center justify-center transition-colors ';
+    let cellClasses = 'h-16 md:h-24 border-r border-b border-light flex items-center justify-center transition-colors ';
     
     if (!day.isCurrentMonth) {
       cellClasses += 'calendar-cell-other-month ';
@@ -75,7 +75,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
       cellClasses += 'calendar-cell-regular ';
     }
 
-    let textClasses = 'text-xl font-bold calendar-date ';
+    let textClasses = 'text-lg md:text-xl font-bold calendar-date ';
     if (!day.isCurrentMonth) {
       textClasses += 'text-gray-400';
     } else if (day.isSunday) {
@@ -89,7 +89,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
     }
 
     return (
-      <div key={day.date.toISOString()} className={cellClasses}>
+      <div key={day.date.toISOString()} className={`${cellClasses} no-select touch-friendly`}>
         <span className={textClasses}>
           {day.dayNumber}
         </span>
@@ -110,7 +110,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
         {weekDays.map((day, index) => (
           <div
             key={day}
-            className={`p-4 text-center text-sm font-medium ${
+            className={`p-2 md:p-4 text-center text-xs md:text-sm font-medium ${
               index === 0 
                 ? 'text-sunday bg-red-50' 
                 : 'text-secondary-calendar'

@@ -73,6 +73,28 @@
     font-weight: 600;
     letter-spacing: 0.5px;
   }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .calendar-date {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+  
+  /* Touch-friendly interactions */
+  .touch-friendly {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text selection on mobile */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
 }
 
 @layer utilities {

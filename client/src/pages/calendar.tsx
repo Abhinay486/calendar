@@ -43,7 +43,7 @@ export default function CalendarPage() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 bg-calendar">
+    <div className="min-h-screen py-4 md:py-8 px-2 md:px-4 bg-calendar">
       <div className="max-w-4xl mx-auto">
         <CalendarHeader
           currentDate={currentDate}

@@ -75,10 +75,10 @@ export function CalendarHeader({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm mb-6 p-6">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-4">
-          <h1 className="text-2xl font-semibold text-primary-calendar">Calendar</h1>
+    <div className="bg-white rounded-lg shadow-sm mb-4 p-4 md:p-6 md:mb-6">
+      <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0 mb-4">
+        <div className="flex flex-col space-y-2 md:flex-row md:items-center md:space-y-0 md:space-x-4">
+          <h1 className="text-xl md:text-2xl font-semibold text-primary-calendar">Calendar</h1>
           {!authLoading && (
             <div className="flex items-center space-x-2">
               <div 
@@ -86,10 +86,10 @@ export function CalendarHeader({
                   authStatus?.isAuthenticated ? 'bg-green-500' : 'bg-red-500'
                 }`}
               />
-              <span className="text-sm text-secondary-calendar">
+              <span className="text-xs md:text-sm text-secondary-calendar truncate">
                 {authStatus?.isAuthenticated 
                   ? `Connected as ${authStatus.user?.email}`
-                  : 'Not connected to Google Calendar'
+                  : 'Not connected'
                 }
               </span>
             </div>
@@ -100,9 +100,10 @@ export function CalendarHeader({
           variant="outline"
           onClick={handleAuthAction}
           disabled={connectMutation.isPending || disconnectMutation.isPending}
-          className="flex items-center space-x-2"
+          className="flex items-center space-x-2 text-xs md:text-sm"
+          size="sm"
         >
-          <svg className="w-4 h-4" viewBox="0 0 24 24">
+          <svg className="w-3 h-3 md:w-4 md:h-4" viewBox="0 0 24 24">
             <path
               fill="#4285f4"
               d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -120,8 +121,11 @@ export function CalendarHeader({
               d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
             />
           </svg>
-          <span>
-            {authStatus?.isAuthenticated ? 'Disconnect' : 'Connect Google Calendar'}
+          <span className="hidden sm:inline">
+            {authStatus?.isAuthenticated ? 'Disconnect' : 'Connect'}
+          </span>
+          <span className="sm:hidden">
+            {authStatus?.isAuthenticated ? 'Disconnect' : 'Connect'}
           </span>
         </Button>
       </div>
@@ -133,18 +137,18 @@ export function CalendarHeader({
           onClick={onPreviousMonth}
           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
         >
-          <ChevronLeft className="w-4 h-4 text-secondary-calendar" />
+          <ChevronLeft className="w-5 h-5 md:w-4 md:h-4 text-secondary-calendar" />
         </Button>
         
-        <div className="flex items-center space-x-4">
-          <h2 className="text-xl font-medium text-primary-calendar">
+        <div className="flex items-center space-x-2 md:space-x-4">
+          <h2 className="text-lg md:text-xl font-medium text-primary-calendar">
             {currentMonthYear}
           </h2>
           <Button
             variant="ghost"
             size="sm"
             onClick={onGoToToday}
-            className="text-sm text-secondary-calendar hover:text-primary-calendar transition-colors"
+            className="text-xs md:text-sm text-secondary-calendar hover:text-primary-calendar transition-colors px-2 py-1"
           >
             Today
           </Button>
@@ -156,7 +160,7 @@ export function CalendarHeader({
           onClick={onNextMonth}
           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
         >
-          <ChevronRight className="w-4 h-4 text-secondary-calendar" />
+          <ChevronRight className="w-5 h-5 md:w-4 md:h-4 text-secondary-calendar" />
         </Button>
       </div>
     </div>
