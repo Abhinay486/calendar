@@ -63,7 +63,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
   };
 
   const renderDay = (day: CalendarDay) => {
-    let cellClasses = 'h-24 border-r border-b border-light p-2 transition-colors ';
+    let cellClasses = 'h-24 border-r border-b border-light flex items-center justify-center transition-colors ';
     
     if (!day.isCurrentMonth) {
       cellClasses += 'calendar-cell-other-month ';
@@ -75,7 +75,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
       cellClasses += 'calendar-cell-regular ';
     }
 
-    let textClasses = 'text-sm ';
+    let textClasses = 'text-xl font-bold ';
     if (!day.isCurrentMonth) {
       textClasses += 'text-gray-400';
     } else if (day.isSunday) {
@@ -85,7 +85,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
     }
 
     if (day.isToday) {
-      textClasses += ' font-medium';
+      textClasses += ' text-blue-600';
     }
 
     return (
@@ -93,25 +93,6 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
         <span className={textClasses}>
           {day.dayNumber}
         </span>
-        {day.isToday && (
-          <div className="text-xs text-blue-600 mt-1">Today</div>
-        )}
-        {day.events.length > 0 && (
-          <div className="mt-1 space-y-1">
-            {day.events.slice(0, 3).map((event, index) => (
-              <div
-                key={event.id}
-                className={`w-2 h-2 rounded-full ${getEventColor(index)}`}
-                title={event.summary}
-              />
-            ))}
-            {day.events.length > 3 && (
-              <div className="text-xs text-gray-500">
-                +{day.events.length - 3} more
-              </div>
-            )}
-          </div>
-        )}
       </div>
     );
   };

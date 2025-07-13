@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CalendarHeader } from '@/components/calendar-header';
 import { CalendarGrid } from '@/components/calendar-grid';
-import { EventsPanel } from '@/components/events-panel';
 import { useToast } from '@/hooks/use-toast';
 
 export default function CalendarPage() {
@@ -54,8 +53,6 @@ export default function CalendarPage() {
         />
         
         <CalendarGrid currentDate={currentDate} />
-        
-        <EventsPanel currentDate={currentDate} />
       </div>
     </div>
   );

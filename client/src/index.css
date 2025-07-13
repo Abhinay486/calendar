@@ -71,11 +71,11 @@
 
 @layer utilities {
   .calendar-cell-sunday {
-    @apply hover:bg-red-50 transition-colors;
+    @apply bg-white hover:bg-red-50 transition-colors;
   }
   
   .calendar-cell-regular {
-    @apply hover:bg-gray-50 transition-colors;
+    @apply bg-white hover:bg-gray-50 transition-colors;
   }
   
   .calendar-cell-today {
@@ -83,12 +83,12 @@
   }
   
   .calendar-cell-other-month {
-    @apply bg-gray-50;
+    @apply bg-gray-50 opacity-50;
   }
   
   .text-sunday {
     color: var(--sunday-red);
-    @apply font-medium;
+    @apply font-bold;
   }
   
   .text-primary-calendar {
