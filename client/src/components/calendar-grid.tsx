@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { googleCalendarApi, type CalendarEvent } from '@/lib/google-calendar';
+import { isHoliday, isPublicHoliday } from '@/lib/holidays';
 
 interface CalendarGridProps {
   currentDate: Date;
@@ -11,6 +12,8 @@ interface CalendarDay {
   isCurrentMonth: boolean;
   isToday: boolean;
   isSunday: boolean;
+  isHoliday: boolean;
+  holidayName?: string;
   events: CalendarEvent[];
 }
 
@@ -43,12 +46,17 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
       return eventDate.toDateString() === current.toDateString();
     });
 
+    const holiday = isHoliday(current);
+    const isPublicHol = isPublicHoliday(current);
+
     calendarDays.push({
       date: new Date(current),
       dayNumber: current.getDate(),
       isCurrentMonth: current.getMonth() === currentDate.getMonth(),
       isToday: current.toDateString() === today.toDateString(),
       isSunday: current.getDay() === 0,
+      isHoliday: isPublicHol,
+      holidayName: holiday?.name,
       events: dayEvents,
     });
     
@@ -78,7 +86,7 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
     let textClasses = 'text-lg md:text-xl font-bold calendar-date ';
     if (!day.isCurrentMonth) {
       textClasses += 'text-gray-400';
-    } else if (day.isSunday) {
+    } else if (day.isSunday || day.isHoliday) {
       textClasses += 'text-sunday';
     } else {
       textClasses += 'text-primary-calendar';
@@ -89,7 +97,11 @@ export function CalendarGrid({ currentDate }: CalendarGridProps) {
     }
 
     return (
-      <div key={day.date.toISOString()} className={`${cellClasses} no-select touch-friendly`}>
+      <div 
+        key={day.date.toISOString()} 
+        className={`${cellClasses} no-select touch-friendly`}
+        title={day.holidayName || ''}
+      >
         <span className={textClasses}>
           {day.dayNumber}
         </span>
