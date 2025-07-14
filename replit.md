@@ -1,84 +1,85 @@
-# Google Calendar Integration App
+# Minimalistic Calendar PWA
 
 ## Overview
 
-This is a full-stack web application that integrates with Google Calendar to display and manage calendar events. The app provides a clean, modern calendar interface where users can authenticate with Google, view their calendar events, and navigate through different months.
+This is a frontend-only React Vite application that displays a clean, minimalistic calendar interface. The app has been converted from a full-stack Google Calendar integration to a standalone PWA (Progressive Web App) that can be installed on Android devices.
 
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Architecture preference: Frontend-only React application with JavaScript (not TypeScript)
 
 ## System Architecture
 
-The application follows a modern full-stack architecture with a clear separation between frontend and backend concerns:
+The application follows a modern frontend-only architecture using React and Vite:
 
 ### Frontend Architecture
-- **React 18** with TypeScript for the user interface
-- **Wouter** for client-side routing (lightweight alternative to React Router)
+- **React 18** with JavaScript (converted from TypeScript)
+- **React Router** for client-side routing
 - **Tailwind CSS** with **shadcn/ui** components for styling and UI components
-- **TanStack Query** for server state management and API caching
 - **Vite** as the build tool and development server
+- **PWA** capabilities with service worker for offline functionality
 
-### Backend Architecture
-- **Express.js** server with TypeScript
-- **RESTful API** design for client-server communication
-- **Google OAuth 2.0** integration for authentication
-- **Google Calendar API** integration for calendar data
-- **Drizzle ORM** with PostgreSQL for data persistence
+### Key Features
+- **Minimalistic Design**: Clean, light color scheme
+- **Deuce-style Typography**: Elegant Georgia serif font for calendar dates
+- **Sunday Highlighting**: Red color for Sunday dates
+- **Mobile-first Design**: Responsive layout with touch-friendly interactions
+- **PWA Support**: Installable as Android app with offline capabilities
 
 ### Directory Structure
 ```
-├── client/           # Frontend React application
-├── server/           # Backend Express server
-├── shared/           # Shared types and schemas
-└── migrations/       # Database migration files
+├── src/
+│   ├── components/      # React components
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── pages/          # Page components
+│   └── index.css       # Global styles
+├── public/             # Static assets and PWA files
+└── vite.config.js      # Vite configuration
 ```
 
 ## Key Components
 
-### Authentication System
-- **Google OAuth 2.0** flow implementation
-- Token management with automatic refresh
-- User session handling
-- Secure credential storage in PostgreSQL
-
 ### Calendar Features
-- Monthly calendar grid view
-- Event display with color coding
-- Navigation between months
-- Today's date highlighting
-- Upcoming events panel
+- Monthly calendar grid view with clean design
+- Navigation between months (Previous/Next/Today buttons)
+- Today's date highlighting with blue background
+- Sunday dates highlighted in red as requested
+- Centered, bold dates with larger font size
+- Deuce-style typography using Georgia serif font
 
-### Data Management
-- **Drizzle ORM** for type-safe database operations
-- PostgreSQL database with proper schema design
-- Event synchronization with Google Calendar
-- Efficient caching with TanStack Query
+### PWA Features
+- Service worker for offline functionality
+- App manifest for Android installation
+- Touch-friendly interactions (44px minimum touch targets)
+- Fullscreen standalone display mode
+- Complete icon set for all device sizes
 
 ### UI/UX Design
 - **shadcn/ui** component library for consistent design
-- Responsive layout that works on desktop and mobile
-- Clean, modern interface with proper accessibility
-- Toast notifications for user feedback
+- Responsive layout optimized for mobile and desktop
+- Clean, minimalistic interface with light color scheme
+- Smooth animations and transitions
+- No text selection on mobile for better UX
 
 ## Data Flow
 
-1. **Authentication Flow**: User clicks connect → redirected to Google OAuth → callback with auth code → exchange for tokens → store in database
-2. **Calendar Data**: Fetch events from Google Calendar API → store/sync in local database → serve to frontend
-3. **Real-time Updates**: Frontend polls for changes using TanStack Query's background refetching
-4. **Error Handling**: Comprehensive error boundaries and user-friendly error messages
+1. **Calendar Generation**: Calculate calendar grid based on current month and year
+2. **Date Rendering**: Apply appropriate styling for current month, other months, today, and Sundays
+3. **PWA Installation**: Detect installation capability and provide install button
+4. **Navigation**: Handle month navigation and today navigation
+5. **Mobile Optimization**: Responsive design with touch-friendly interactions
 
-## External Dependencies
+## Removed Dependencies
 
-### Google Services
-- **Google Calendar API** for calendar data
-- **Google OAuth 2.0** for authentication
-- **Google People API** for user information
-
-### Database
-- **PostgreSQL** via Neon Database (serverless)
-- **Drizzle ORM** for database operations
-- **Drizzle Kit** for migrations
+### Previously Used (Now Removed)
+- Google Calendar API integration
+- Google OAuth 2.0 authentication
+- Express.js backend server
+- PostgreSQL database
+- Drizzle ORM
+- TypeScript (converted to JavaScript)
 
 ### Key Libraries
 - **@neondatabase/serverless** for PostgreSQL connection

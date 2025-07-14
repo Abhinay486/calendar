@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 98%);
+  --foreground: hsl(220, 13%, 23%);
+  --muted: hsl(210, 11%, 96%);
+  --muted-foreground: hsl(215, 16%, 44%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(220, 13%, 23%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(220, 13%, 23%);
+  --border: hsl(220, 13%, 91%);
+  --input: hsl(220, 13%, 91%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(210, 11%, 96%);
+  --secondary-foreground: hsl(220, 9%, 10%);
+  --accent: hsl(210, 11%, 96%);
+  --accent-foreground: hsl(220, 9%, 10%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(60, 9%, 98%);
+  --ring: hsl(220, 13%, 23%);
+  --radius: 0.5rem;
+  
+  /* Calendar specific colors */
+  --calendar-bg: hsl(0, 0%, 98%);
+  --calendar-cell: hsl(0, 0%, 100%);
+  --sunday-red: hsl(0, 84%, 55%);
+  --text-primary: hsl(220, 13%, 23%);
+  --text-secondary: hsl(215, 16%, 44%);
+  --border-light: hsl(220, 13%, 91%);
+  --today-bg: hsl(215, 20%, 96%);
+  --event-green: hsl(142, 76%, 36%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 4%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 4%, 16%);
+  --muted-foreground: hsl(240, 5%, 65%);
+  --popover: hsl(240, 10%, 4%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 4%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 4%, 16%);
+  --input: hsl(240, 4%, 16%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 4%, 16%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 4%, 16%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 5%, 84%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  .calendar-date {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    .calendar-date {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+  
+  /* Touch-friendly interactions */
+  .touch-friendly {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text selection on mobile */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+}
+
+@layer utilities {
+  .calendar-cell-sunday {
+    @apply bg-white hover:bg-red-50 transition-colors;
+  }
+  
+  .calendar-cell-regular {
+    @apply bg-white hover:bg-gray-50 transition-colors;
+  }
+  
+  .calendar-cell-today {
+    @apply bg-blue-50 border-2 border-blue-200;
+  }
+  
+  .calendar-cell-other-month {
+    @apply bg-gray-50 opacity-50;
+  }
+  
+  .text-sunday {
+    color: var(--sunday-red);
+    @apply font-bold;
+  }
+  
+  .text-primary-calendar {
+    color: var(--text-primary);
+  }
+  
+  .text-secondary-calendar {
+    color: var(--text-secondary);
+  }
+  
+  .border-light {
+    border-color: var(--border-light);
+  }
+  
+  .bg-calendar {
+    background-color: var(--calendar-bg);
+  }
+  
+  .bg-calendar-cell {
+    background-color: var(--calendar-cell);
+  }
+  
+  .bg-today {
+    background-color: var(--today-bg);
+  }
+}
