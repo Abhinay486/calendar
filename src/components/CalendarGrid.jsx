@@ -45,7 +45,7 @@ export function CalendarGrid({ currentDate }) {
       cellClasses += 'calendar-cell-regular ';
     }
 
-    let textClasses = 'text-lg md:text-xl font-bold calendar-date ';
+    let textClasses = 'text-2xl md:text-xl font-bold calendar-date ';
     if (!day.isCurrentMonth) {
       textClasses += 'text-gray-400';
     } else if (day.isSunday) {
@@ -55,7 +55,7 @@ export function CalendarGrid({ currentDate }) {
     }
 
     if (day.isToday) {
-      textClasses += ' text-blue-600';
+      textClasses += ' text-blue-800';
     }
 
     return (

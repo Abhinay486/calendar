@@ -24,9 +24,7 @@ export function CalendarHeader({
           <h1 className="text-xl md:text-2xl font-semibold text-primary-calendar">Calendar</h1>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 rounded-full bg-gray-400" />
-            <span className="text-xs md:text-sm text-secondary-calendar">
-              Frontend Only
-            </span>
+            
           </div>
         </div>
         
